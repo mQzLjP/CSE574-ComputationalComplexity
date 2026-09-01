@@ -1,0 +1,64 @@
+\chapter{The Beginning}
+
+The start of computational theory can be traced back to the 1930s, when mathematicians and logicians were trying to formalize the notion of computation and algorithms. The Church-Turing thesis, proposed independently by Alonzo Church and Alan Turing, laid the foundation for the study of computational complexity.
+
+\begin{theorem}[Church-Turing Thesis]
+	Every effectively calculable function is computable by a Turing machine.
+\end{theorem}
+
+Then mathematicians and computer scientists began to explore the limits of computation, with such an open thesis:
+
+\begin{problem}[Extended (Quantum) Church-Turing Thesis]
+	Every physically realizable model of computation can be simulated by a (quantum) Turing machine efficiently.
+\end{problem}
+
+\section{Definition of Computational Theory}
+
+\begin{remark}
+	Computational theory deals with how much resources we need to solve a computational problem.
+\end{remark}
+
+Resources can be many things. For example:
+\begin{itemize}
+	\item Time
+	\item Memory / Space
+	\item Samples Complexity (how many samples we need to distinguish between distributions)
+	\item Communication Rounds
+	\item Oracle Calls
+	\item Randomness
+	\item Power
+	\item Quantum Entanglement
+	\item Number of Parallel Workers
+	\item $\cdots$
+\end{itemize}
+
+\section{What is Complexity About?}
+
+In CS Theory, people do research in algorithms and complexity. People might lean on one side or the other, but they are closely related. In a word:
+\begin{remark}
+	Algorithms are about the upper bound of a problem, while complexity is about the lower bound of a problem.
+\end{remark}
+
+\chapter{Time and Non-deterministic Time}
+
+\section{Languages and Problems}
+In computational complexity, we talk about languages as how we think about computational problems.
+
+\begin{definition}
+	A language $L$ is a set of strings that $L\subseteq \Sigma^*$, where $\Sigma$ is a finite alphabet (often $\{0,1\}$ bits.)
+\end{definition}
+
+\begin{eg}
+	An algorithm $\text{PRIMES}(n)$ can decide whether a number $n$ is prime or not. The language of this problem is:
+	\[ \text{PRIMES} = \{ \langle x \rangle : x \text{ is prime} \}. \]
+	$\langle x \rangle$ is the encoding of $x$ in binary.
+\end{eg}
+
+\section{Classes of Complexity}
+
+\begin{definition}
+	$L \in : \DTIME(T(n))$ if there's a deterministic Turing machine $M$ that decides $L$ in time $O(T(n))$.
+	$ \P := \bigcup_{c\ge 1} \DTIME(n^c)$ is the class of problems that can be solved in polynomial time.
+\end{definition}
+
+It's easy to see that $\text{PRIMES}\subseteq \P$.
