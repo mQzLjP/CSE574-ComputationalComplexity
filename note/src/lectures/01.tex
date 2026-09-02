@@ -45,7 +45,7 @@ In CS Theory, people do research in algorithms and complexity. People might lean
 In computational complexity, we talk about languages as how we think about computational problems.
 
 \begin{definition}
-	A language $L$ is a set of strings that $L\subseteq \Sigma^*$, where $\Sigma$ is a finite alphabet (often $\{0,1\}$ bits.)
+	A \textbf{language} $L$ is a set of strings that $L\subseteq \Sigma^*$, where $\Sigma$ is a finite alphabet (often $\{0,1\}$ bits.)
 \end{definition}
 
 \begin{eg}
@@ -56,6 +56,7 @@ In computational complexity, we talk about languages as how we think about compu
 
 \section{Classes of Complexity}
 
+\subsection{Deterministic Time Complexity}
 \begin{definition}
 	$L \in : \DTIME(T(n))$ if there's a deterministic Turing machine $M$ that decides $L$ in time $O(T(n))$.
 	$ \P := \bigcup_{c\ge 1} \DTIME(n^c)$ is the class of problems that can be solved in polynomial time.

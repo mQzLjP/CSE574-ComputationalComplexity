@@ -1,0 +1,56 @@
+
+\begin{eg}
+	\[ \text{CONN} = \{ x: x \text{ is the adjacency matrix of a connected graph} \} \]
+	CONN$\subseteq \P$ because we can use DFS or BFS to check connectivity in polynomial time.
+\end{eg}
+
+\subsection{Non-deterministic Time Complexity}
+
+\begin{definition}
+	A \textbf{non-deterministic Turing machine} is a Turing machine that can make non-deterministic choices at each step. It can be thought of as a machine that can explore multiple computation paths simultaneously, or a machine that takes different branches of operations in different universes.
+\end{definition}
+
+For instance, assume a certain state. In this state, the transition function for a deterministic TM might be just $(0,\text{L},1)$ and $(1,\text{R},1)$, while a non-deterministic TM might have $(0,\text{R},1)$, $(0,\text{L},0)$, and $(1,\text{L},1)$. When the machine meets a $0$, it may arbitrarily choose to go left or right.
+
+\begin{definition}
+	$L \in : \NTIME(T(n))$ if there's a non-deterministic Turing machine $M$ that decides $L$ in time $O(T(n))$ (regardless of which universe.)
+
+	Here `decides' means that if $x\in L$, there exists a computation path that accepts $x$; if $x\notin L$, all computation paths reject $x$.
+
+	$L \in \mathsf{co-NTIME}(T(n)) \iff \overline{L} \in \NTIME(T(n))$.
+
+	$ \NP := \bigcup_{c\ge 1} \NTIME(n^c)$ is the class of problems that can be solved in polynomial time by a non-deterministic Turing machine.
+\end{definition}
+
+\begin{remark}
+	We normally consider $\NP$ to be `verifiable' in polynomial time, using a `certificate' $u$. Consider a non-deterministic TM accepts $x$ in a certain path. The sequence of non-deterministic choices made by the TM can be encoded as a string $u$. Then we can verify whether $x\in L$ by checking if there exists a certificate $u$ such that $M(x,u)$ accepts in polynomial time. This can also explain why the certificate is required to be in size $O(T(n))$.
+
+	In mathematical terms:
+	\[ x\in L \iff \exists u\in \{0,1\}^{O(T(n))} \text{ s.t. } M(x,u) = 1. \]
+	Then for $\NP$, $T(n) = \poly(n)$.
+\end{remark}
+
+\begin{eg}
+	\begin{itemize}
+		\item Independent Set.
+		      \[ \text{IND-SET} = \{ \langle G,k\rangle : \exists S \subseteq V(G) \text{ s.t. } |S| \geq k \text{ and } \forall u,v \in S, \{u,v\} \notin E(G) \} \]
+		      Independent Set is in $\NP$ because we can verify a solution by manually checking the edges in the graph.
+		\item Traveling Salesman Problem (TSP) is about many cities, with $d_{ij}$ being the distance between city $i$ and city $j$.
+
+		      The problem is whether there exists a closed circuit that visits each city exactly once, with total distance at most $k$.
+
+		      TSP is in $\NP$ because we can calculate the distance of a circuit in polynomial time.
+		\item Linear Programming: $A\vec{x} \leq \vec{b}$. Is there a solution $\vec{x}$?
+
+		      LP is trivially $\NP$, but people later found that LP is also in $\P$.
+		\item Graph Isomorphism: Given two adjacency matrices, do they define the same graph up to permutation of vertices?
+
+		      Graph Isomorphism is in $\NP$ because we can verify a solution by checking if such permutation of vertices gives the same adjacency matrix.
+		\item Factoring.
+		      \[ \text{FACTORING} = \{ \langle N,k\rangle : N \text{ has a factor } \leq k \} \]
+		      Equivalently, it can also decide $\{ \langle N, L, R\rangle : N \text{ has a prime factor between } L \text{ and } R \}$.
+
+		      Factoring is in $\NP$ as we can just divide $N$ by a certificate.
+	\end{itemize}
+\end{eg}
+
