@@ -1,7 +1,7 @@
 
 \begin{eg}
 	\[ \text{CONN} = \{ x: x \text{ is the adjacency matrix of a connected graph} \} \]
-	CONN$\subseteq \P$ because we can use DFS or BFS to check connectivity in polynomial time.
+  CONN$\in \P$ because we can use DFS or BFS to check connectivity in polynomial time.
 \end{eg}
 
 \subsection{Non-deterministic Time Complexity}
@@ -31,6 +31,7 @@ For instance, assume a certain state. In this state, the transition function for
 \end{remark}
 
 \begin{eg}
+	$ $
 	\begin{itemize}
 		\item Independent Set.
 		      \[ \text{IND-SET} = \{ \langle G,k\rangle : \exists S \subseteq V(G) \text{ s.t. } |S| \geq k \text{ and } \forall u,v \in S, \{u,v\} \notin E(G) \} \]

@@ -58,8 +58,8 @@ In computational complexity, we talk about languages as how we think about compu
 
 \subsection{Deterministic Time Complexity}
 \begin{definition}
-	$L \in : \DTIME(T(n))$ if there's a deterministic Turing machine $M$ that decides $L$ in time $O(T(n))$.
+	$L \in : \DTIME(T(n))$ if there's a deterministic Turing machine $M$ that decides $L$ in time $O(T(n))$, where $n$ is the size of the input.
 	$ \P := \bigcup_{c\ge 1} \DTIME(n^c)$ is the class of problems that can be solved in polynomial time.
 \end{definition}
 
-It's easy to see that $\text{PRIMES}\subseteq \P$.
+Researchers have found a polynomial time algorithm for the PRIMES problem in 2002, so \[\text{PRIMES}\in \P.\]
