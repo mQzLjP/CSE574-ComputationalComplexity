@@ -14,11 +14,14 @@ For instance, assume a certain state. In this state, the transition function for
 
 \begin{definition}
 	$L \in : \NTIME(T(n))$ if there's a non-deterministic Turing machine $M$ that decides $L$ in time $O(T(n))$ (regardless of which universe.)
-
 	Here `decides' means that if $x\in L$, there exists a computation path that accepts $x$; if $x\notin L$, all computation paths reject $x$.
 
-	$L \in \mathsf{co-NTIME}(T(n)) \iff \overline{L} \in \NTIME(T(n))$.
+\end{definition}
+\begin{definition}
 
+	$L \in \mathsf{co-NTIME}(T(n)) \iff \overline{L} \in \NTIME(T(n))$.
+\end{definition}
+\begin{definition}
 	$ \NP := \bigcup_{c\ge 1} \NTIME(n^c)$ is the class of problems that can be solved in polynomial time by a non-deterministic Turing machine.
 \end{definition}
 
