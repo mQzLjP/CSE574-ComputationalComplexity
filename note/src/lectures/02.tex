@@ -26,7 +26,7 @@ For instance, assume a certain state. In this state, the transition function for
 \end{definition}
 
 \begin{remark}
-	We normally consider $\NP$ to be `verifiable' in polynomial time, using a `certificate' $u$. Consider a non-deterministic TM accepts $x$ in a certain path. The sequence of non-deterministic choices made by the TM can be encoded as a string $u$. Then we can verify whether $x\in L$ by checking if there exists a certificate $u$ such that $M(x,u)$ accepts in polynomial time. This can also explain why the certificate is required to be in size $O(T(n))$.
+	We normally consider $\NP$ to be `verifiable' in polynomial time, using a `certificate' $u$. Consider a non-deterministic TM that accepts $x$ in a certain path. The sequence of non-deterministic choices made by the TM can be encoded as a string $u$. Then we can construct a deterministic TM $M(.,.)$ that takes $x$ and $u$ as input, and verify whether $x\in L$ by checking if there exists a certificate $u$ such that $M(x,u)$ accepts in polynomial time. This can also explain why the certificate is required to be in size $O(T(n))$.
 
 	In mathematical terms:
 	\[ x\in L \iff \exists u\in \{0,1\}^{O(T(n))} \text{ s.t. } M(x,u) = 1. \]
