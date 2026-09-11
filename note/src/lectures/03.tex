@@ -1,0 +1,30 @@
+\begin{theorem}
+\[\P \in \NP \cap \coNP.\]
+\end{theorem}
+
+\chapter{Proving NP Problems}
+
+\section{NP-hard and NP-complete}
+
+\begin{definition}[Karp Reduction]
+  $L \le_p L'$ if there's a polynomial-time computable function $f$ such that for all $x$, $x \in L \iff f(x) \in L'$.
+\end{definition}
+
+\begin{definition}[NP-hard and NP-complete]
+  $L$ is \textbf{NP-hard} if for all $L' \in \NP$, $L' \le_p L$. $L$ is \textbf{NP-complete} if $L$ is NP-hard and $L \in \NP$.
+\end{definition}
+
+We can find a NP-complete problem by simply looking at the definitions.
+
+\begin{problem}[TMSAT]
+  \[\text{TMSAT} = \{\langle M, x, 1^n, 1^t\rangle : \exists u\in \{0,1\}^n \text{ such that } M(x,u) \text{ accepts in } t \text{ steps}\}.\]
+\end{problem}
+\begin{theorem}
+  TMSAT is NP-complete.
+\end{theorem}
+\begin{proof}
+  First of all we see that TMSAT is in NP as we can give out $u$ and simulate.
+
+  Now we want to prove that TMSAT is NP-hard. Let $L \in \NP$ and let $M$ be a polynomial-time verifier for $L$. Let $p(n)$ be the polynomial bound on the running time of $M$. We can reduce $L$ to TMSAT by mapping $x$ to $\langle M, x, 1^{p(|x|)}, 1^{p(|x|)}\rangle$. This reduction is clearly polynomial-time computable. 
+  Now we have that $x \in L$ if and only if there exists a $u$ such that $M(x,u)$ accepts in $p(|x|)$ steps, which is equivalent to $\langle M, x, 1^{p(|x|)}, 1^{p(|x|)}\rangle \in \text{TMSAT}$. Therefore, TMSAT is NP-hard.
+\end{proof}
