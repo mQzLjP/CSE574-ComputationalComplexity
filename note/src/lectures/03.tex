@@ -50,4 +50,37 @@ Cook-Levin theorem is about an interesting NP-complete problem called SAT.
 	Let $L\in \NP$. By definition, there exists a polynomial-time verifier $M$ for $L$. We want to describe a polynomial-time transformation $x\to \varphi_x$ such that
 	\[
 		\varphi_x \in \text{SAT} \iff \exists u \in \{0,1\}^{p(|x|)} \text{ such that } M(x,u) = 1\]
+
+	We do so by constructing a tableau of the computation of $M$ on input $(x,u)$, where $u$ is a string of length $p(|x|)$. 
+	The tableau is a two-dimensional array where each row represents a configuration of the Turing machine at a specific time step, and each column represents a tape cell. 
+
+	The first row corresponds to the initial configuration. For example, for a starting state $q_0$ and input tape containing $x$ followed by $u$, the first row would look like:
+
+	\[
+		\bot \underbrace{q_0}_{\text{state}} \underbrace{w_1 w_2 \ldots w_n}_{\text{input tape}} \underbrace{\# \# \ldots}_{\text{blank cells}}\bot
+	\]
+
+	Checking the first row is easy, as we can hardcode the initial configuration into the formula. Name such a formula $\varphi_{\text{start}}$.
+
+	Then after some state transitions, the intermediate rows may look like:
+
+	\[
+	\bot \underbrace{\# \# \ldots}_{\text{blank cells}} \underbrace{y_1 y_2 \ldots y_i}_{\text{tape contents}} \underbrace{q_j}_{\text{state}} \underbrace{y_{i+1}\ldots y_m}_{\text{tape contents}} \underbrace{\# \# \ldots}_{\text{blank cells}}\bot
+	\]
+	We can't be sure about the contents of the tape, but we can check that the transition from one row to the next is valid according to the transition function of $M$. For example, describing a transition on state $q_i$ only concerns a $2 \times 3$ window of the tableau:
+
+	\[
+		\begin{array}{ccc}
+			\# & q_i & 0 \\
+			q_j & \# & 1
+		\end{array}
+	\]
+	Then it suffices to encode the transition rules of $M$ into a windows, and check that every $2 \times 3$ window of the tableau satisfies one of the transition rules. This can be done by a formula $\varphi_{\text{move}}$.
+
+	Also, we want to check that all cells are valid (i.e. there're no multiple characters in a cell) We encode such constraints into a formula $\varphi_{\text{cell}}$.
+
+	Finally, there has to be a $q_{\text{accept}}$ in the last row of the tableau. Searching for this symbol can be encoded into a formula $\varphi_{\text{accept}}$.
+
+	Now we construct the final formula as $\varphi_x = \varphi_{\text{start}} \wedge \varphi_{\text{move}} \wedge \varphi_{\text{cell}} \wedge \varphi_{\text{accept}}$. This formula is satisfiable if and only if there exists a valid tableau of the computation of $M$ on input $(x,u)$ that leads to an accepting configuration, which is equivalent to saying that there exists a $u$ such that $M(x,u) = 1$.
+
 \end{proof}
